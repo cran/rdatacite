@@ -2,6 +2,7 @@ context("dc_oai_listsets")
 
 test_that("dc_oai_listsets", {
   skip_on_cran()
+  skip_on_travis()
 
   aa <- dc_oai_listsets()
 
@@ -15,7 +16,9 @@ test_that("dc_oai_listsets fails well", {
   skip_on_cran()
 
   expect_error(dc_oai_listsets(token = 454),
-               "The value of the resumptionToken argument is invalid or expired")
+    "The value of the resumptionToken argument is invalid or expired", 
+    class = "error")
   expect_error(dc_oai_listsets("stuff"),
-               "The value of the resumptionToken argument is invalid or expired")
+    "The value of the resumptionToken argument is invalid or expired", 
+    class = "error")
 })
