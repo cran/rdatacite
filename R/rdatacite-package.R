@@ -1,37 +1,57 @@
-#' DataCite R client.
+#' DataCite R client
 #'
-#' @section OAI-PMH functions:
+#' @section HTTP Requests:
+#' All HTTP requests are GET requests, and are sent with the following
+#' headers:
 #'
-#' - [dc_oai_getrecord()] - Get records
-#' - [dc_oai_identify()] - identify the OAI-PMH service
-#' - [dc_oai_listidentifiers()] - List identifiers
-#' - [dc_oai_listmetadataformats()] - List metadata formats
-#' - [dc_oai_listrecords()] - List records
-#' - [dc_oai_listsets()] - List sets
+#' - `Accept: application/vnd.api+json; version=2`
+#' - `User-Agent: r-curl/4.3 crul/0.9.0 rOpenSci(rdatacite/0.5.0)`
+#' - `X-USER-AGENT: r-curl/4.3 crul/0.9.0 rOpenSci(rdatacite/0.5.0)`
 #'
-#' @section Search functions (Solr based):
+#' The user-agent strings change as the versions of each package change.
 #'
-#' - [dc_search()] - General search, only returns documents
-#' - [dc_facet()] - Faceting only (w/o general search)
-#' - [dc_mlt()] - More like this (w/o general search)
-#' - [dc_stats()] - Stats search (w/o general search)
+#' @section Methods in the package:
 #'
-#' @section REST API functions:
+#' - [dc_providers()]
+#' - [dc_reports()]
+#' - [dc_check()]
+#' - [dc_events()]
+#' - [dc_dois()]
+#' - [dc_clients()]
+#' - [dc_client_prefixes()]
+#' - [dc_provider_prefixes()]
+#' - [dc_status()]
+#' - [dc_prefixes()]
+#' - [dc_activities()]
 #'
-#' - [dc_data_center()] - Get a single data center
-#' - [dc_data_centers()] - Search data centers
-#' - [dc_member()] - Get single DataCite member
-#' - [dc_members()] - Search DataCite members
-#' - [dc_work()] - Get single works
-#' - [dc_works()] - Search works
+#' @section rdatacite defunct functions:
 #'
-#' @section Vignettes:
+#' - `dc_data_center`
+#' - `dc_data_centers`
+#' - `dc_facet`
+#' - `dc_member`
+#' - `dc_members`
+#' - `dc_mlt`
+#' - `dc_oai_getrecord`
+#' - `dc_oai_identify`
+#' - `dc_oai_listidentifiers`
+#' - `dc_oai_listmetadataformats`
+#' - `dc_oai_listrecords`
+#' - `dc_oai_listsets`
+#' - `dc_search`
+#' - `dc_stats`
+#' - `dc_work`
+#' - `dc_works`
 #'
-#' Coming soon...
+#' @section Content negotation:
+#' For content negotation see `rcrossref::cr_cn()`, which can be used for
+#' Crossref, DataCite and Medra DOIs
+#' 
+#' @section GraphGL API:
+#' rdatacite does not support the GraphGL API
+#' https://support.datacite.org/docs/datacite-graphql-api-guide - we suggest
+#' trying the `ghql` package (https://github.com/ropensci/ghql/)
 #'
-#' @importFrom solrium SolrClient
-#' @importFrom oai get_records id list_metadataformats list_records
-#' list_sets
 #' @name rdatacite-package
 #' @aliases rdatacite
 #' @docType package
